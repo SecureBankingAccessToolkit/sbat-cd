@@ -1,3 +1,5 @@
+serviceAccount: default
+
 imageRepoSecret:
   namespace: default
   name: gcr-secret

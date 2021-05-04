@@ -10,7 +10,6 @@ We are deploying [forgeops](https://github.com/forgerock/forgeops) to our own cl
 
 | Value | description | default |
 | ----- | ----------- | ------- |
-| namespace | namespace to deploy the chart | default |
 | serviceAccount | service account to update with the imagePullSecret | default |
 | imageRepoSecret.name | name of the docker image repository secret | |
 | imageRepoSecret.namespace | namespace of the docker image repository secret | default |
