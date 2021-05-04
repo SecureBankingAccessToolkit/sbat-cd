@@ -1,0 +1,3 @@
+imageRepoSecret:
+  namespace: default
+  name: gcr-secret
