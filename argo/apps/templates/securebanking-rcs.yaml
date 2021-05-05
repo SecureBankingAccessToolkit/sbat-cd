@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: securebanking-rcs
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    path: _infra/helm/securebanking-openbanking-uk-rcs
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-rcs
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
