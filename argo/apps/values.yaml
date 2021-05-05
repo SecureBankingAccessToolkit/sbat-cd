@@ -1,0 +1,14 @@
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  source:
+    repoURL: https://github.com/SecureBankingAccessToolkit/init-charts
+    targetRevision: HEAD
+  
+  ## syncPolicy: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

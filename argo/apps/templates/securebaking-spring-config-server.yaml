@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: securebanking-spring-config-server
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    path: _infra/helm/securebanking-spring-config-server
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-spring-config-server
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
