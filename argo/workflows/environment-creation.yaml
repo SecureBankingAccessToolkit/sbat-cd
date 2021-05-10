@@ -1,0 +1,70 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: create-environment
+spec:
+  entrypoint: create-environment
+
+  templates:
+  - name: create-environment
+    # Instead of just running a container
+    # This template has a sequence of steps
+    steps:
+    - - name: init-namespace
+        template: sync-git
+        arguments:
+          parameters:
+          - name: application-name
+            value: namespace-setup
+    - - name: Mongodb
+        template: sync-helm
+        arguments:
+          parameters:
+          - name: application-name
+            value: mongodb
+      - name: securebanking-spring-config-server
+        template: sync-git
+        arguments:
+          parameters:
+          - name: application-name
+            value: securebanking-spring-config-server
+    - - name: securebanking-rs
+        template: sync-git
+        arguments:
+          parameters:
+          - name: application-name
+            value: securebanking-rs
+    - - name: securebanking-rcs
+        template: sync-git
+        arguments:
+          parameters:
+          - name: application-name
+            value: securebanking-rcs
+  
+  - name: sync-git
+    inputs:
+      parameters:
+      - name: application-name
+    steps:                              # You should only reference external "templates" in a "steps" or "dag" "template".
+      - - name: sync
+          templateRef:                  # You can reference a "template" from another "WorkflowTemplate or ClusterWorkflowTemplate" using this field
+            name: argocd-sync-and-wait   # This is the name of the "WorkflowTemplate or ClusterWorkflowTemplate" CRD that contains the "template" you want
+            template: sync-git # This is the name of the "template" you want to reference
+          arguments:                    # You can pass in arguments as normal
+            parameters:
+            - name: application-name
+              value: "{{inputs.parameters.application-name}}"
+  
+  - name: sync-helm
+    inputs:
+      parameters:
+      - name: application-name
+    steps:                              # You should only reference external "templates" in a "steps" or "dag" "template".
+      - - name: sync
+          templateRef:                  # You can reference a "template" from another "WorkflowTemplate or ClusterWorkflowTemplate" using this field
+            name: argocd-sync-and-wait   # This is the name of the "WorkflowTemplate or ClusterWorkflowTemplate" CRD that contains the "template" you want
+            template: sync-helm  # This is the name of the "template" you want to reference
+          arguments:                    # You can pass in arguments as normal
+            parameters:
+            - name: application-name
+              value: "{{inputs.parameters.application-name}}"
