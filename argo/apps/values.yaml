@@ -6,9 +6,5 @@ spec:
   source:
     repoURL: https://github.com/SecureBankingAccessToolkit/init-charts
     targetRevision: HEAD
-  
-  ## syncPolicy: {}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+
+  syncPolicy: {}
