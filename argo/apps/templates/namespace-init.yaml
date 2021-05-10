@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: namespace-setup
-  namespace: argocd
   annotations:
     argocd.argoproj.io/hook: PreSync
   finalizers:
@@ -17,6 +16,8 @@ spec:
     repoURL: https://github.com/SecureBankingAccessToolkit/init-charts
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
+    {{- if .Values.spec.syncPolicy }}
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
+    {{- end }}
     syncOptions:
       - CreateNamespace=true
