@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: functional-test
+
+spec:
+  entrypoint: functional-test
+  templates:
+    - name: functional-tests
+      container:
+        image: eu.gcr.io/sbat-gcr-develop/obri/api-tests
+        command: [bash]
+        env:
+          - name: DOMAIN
+            valueFrom:
+              configMapKeyRef:
+                name: domains
+                key: dev
+        source: |
+          #!/bin/bash
+
+          gradle cleanTest test
