@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: daily-sync
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  schedule: 0 8 * * MON-FRI
+  successfulJobsHistoryLimit: 1
+  timezone: Europe/London
+  workflowSpec:
+    entrypoint: create-environment
+    podGC:
+      strategy: OnPodCompletion
+    templates:
+    - name: create-environment
+      steps:
+      - - name: create-env
+          template: create-env
+    ttlStrategy:
+      secondsAfterCompletion: 300
+    
+    - name: create-env
+      steps:
+        - - name: create
+            templateRef:
+              name: create-environment
+              template: create-environment
+        
