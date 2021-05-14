@@ -17,8 +17,6 @@ spec:
       steps:
       - - name: create-env
           template: create-env
-    ttlStrategy:
-      secondsAfterCompletion: 300
     
     - name: create-env
       steps:
@@ -26,4 +24,7 @@ spec:
             templateRef:
               name: create-environment
               template: create-environment
+    
+    ttlStrategy:
+      secondsAfterCompletion: 300
         
