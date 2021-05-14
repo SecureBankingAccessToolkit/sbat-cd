@@ -8,3 +8,8 @@ spec:
     targetRevision: HEAD
 
   syncPolicy: {}
+
+config:
+  domain: localhost
+  externalCert:
+    projectId: example-project

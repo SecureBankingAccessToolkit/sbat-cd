@@ -12,6 +12,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
+    helm:
+      parameters:
+      - name: externalCert.projectId
+        value: {{ .Values.config.externalCert.projectId }}
     path: cluster-setup/namespace-setup
     repoURL: https://github.com/SecureBankingAccessToolkit/init-charts
     targetRevision: {{ .Values.spec.source.targetRevision }}

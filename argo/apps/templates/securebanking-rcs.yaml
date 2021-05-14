@@ -10,6 +10,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
+    helm:
+      parameters:
+      - name: ingress.domain
+        value: {{ .Values.config.domain }}
     path: _infra/helm/securebanking-openbanking-uk-rcs
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-rcs
     targetRevision: {{ .Values.spec.source.targetRevision }}
