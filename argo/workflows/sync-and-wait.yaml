@@ -19,6 +19,7 @@ spec:
       - name: argocd-version
         value: v2.0.0
       - name: application-name
+      - name: namespace
       - name: revision
         value: HEAD
       - name: flags
@@ -42,8 +43,8 @@ spec:
 
         set -euo pipefail
 
-        argocd app sync {{inputs.parameters.application-name}} --revision {{inputs.parameters.revision}} {{inputs.parameters.flags}}
-        argocd app wait {{inputs.parameters.application-name}} --health {{inputs.parameters.flags}}
+        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --revision {{inputs.parameters.revision}} {{inputs.parameters.flags}}
+        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}
   
   - name: sync-helm
     inputs:
@@ -51,6 +52,7 @@ spec:
       - name: argocd-version
         value: v2.0.0
       - name: application-name
+      - name: namespace
       - name: flags
         value: --
     script:
@@ -72,5 +74,5 @@ spec:
 
         set -euo pipefail
         
-        argocd app sync {{inputs.parameters.application-name}} {{inputs.parameters.flags}}
-        argocd app wait {{inputs.parameters.application-name}} --health {{inputs.parameters.flags}}
+        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} {{inputs.parameters.flags}}
+        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}

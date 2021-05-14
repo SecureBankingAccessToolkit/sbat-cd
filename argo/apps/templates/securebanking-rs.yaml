@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: securebanking-rs
+  name: securebanking-rs-{{ .Release.Name }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
