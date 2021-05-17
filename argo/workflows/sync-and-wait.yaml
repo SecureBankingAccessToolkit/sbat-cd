@@ -20,6 +20,8 @@ spec:
         value: v2.0.0
       - name: application-name
       - name: namespace
+      - name: tag
+        value: latest
       - name: revision
         value: HEAD
       - name: flags
@@ -42,7 +44,7 @@ spec:
         #!/bin/bash
 
         set -euo pipefail
-
+        argocd app set {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} -p deployment.imageOverride.tag={{inputs.parameters.tag}}
         argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --revision {{inputs.parameters.revision}} {{inputs.parameters.flags}}
         argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}
   
