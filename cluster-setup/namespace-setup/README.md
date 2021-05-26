@@ -10,6 +10,9 @@ We are deploying [forgeops](https://github.com/forgerock/forgeops) to our own cl
 
 | Value | description | default |
 | ----- | ----------- | ------- |
-| serviceAccount | service account to update with the imagePullSecret | default |
+| serviceAccount | service account to update with the imagePullSecret | `default` |
 | imageRepoSecret.name | name of the docker image repository secret | |
-| imageRepoSecret.namespace | namespace of the docker image repository secret | default |
+| imageRepoSecret.namespace | namespace of the docker image repository secret | `default` |
+| externalCert.enabled | enable wildcard certificate | `true` |
+| externalCert.secretName | Name of the kubernetes secret to store the wildcard | `sslcert` |
+| externalCert.projectId | GCP project that stores the secrets | `example-project` |
