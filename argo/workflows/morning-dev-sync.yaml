@@ -5,7 +5,7 @@ metadata:
 spec:
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
-  schedule: 0 8 * * MON-FRI
+  schedule: 30 8 * * MON-FRI
   successfulJobsHistoryLimit: 1
   timezone: Europe/London
   workflowSpec:
