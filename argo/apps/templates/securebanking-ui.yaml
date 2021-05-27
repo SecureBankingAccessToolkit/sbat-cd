@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: securebanking-ui-{{ .Release.Name }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    helm:
+      parameters:
+      - name: ingress.domain
+        value: {{ .Values.config.domain }}
+    path: _infra/helm/securebanking-ui
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
