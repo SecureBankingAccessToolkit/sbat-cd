@@ -63,6 +63,14 @@ spec:
             value: securebanking-rcs
           - name: namespace
             value: "{{workflow.parameters.namespace}}"
+      - name: securebanking-ui
+        template: sync-git
+        arguments:
+          parameters:
+          - name: application-name
+            value: securebanking-ui
+          - name: namespace
+            value: "{{workflow.parameters.namespace}}"
   
   - name: clean
     inputs:
