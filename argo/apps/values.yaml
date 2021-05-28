@@ -12,3 +12,7 @@ config:
   domain: localhost
   externalCert:
     projectId: example-project
+
+mongodb:
+  auth:
+    enabled: false
