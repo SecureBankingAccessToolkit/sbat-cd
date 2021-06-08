@@ -22,7 +22,7 @@ spec:
       - name: namespace
       - name: tag
         value: latest
-      - name: revision
+      - name: branch
         value: HEAD
       - name: flags
         value: --
@@ -45,7 +45,7 @@ spec:
 
         set -euo pipefail
         argocd app set {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} -p deployment.imageOverride.tag={{inputs.parameters.tag}}
-        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --revision {{inputs.parameters.revision}} {{inputs.parameters.flags}}
+        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --revision {{inputs.parameters.branch}} {{inputs.parameters.flags}}
         argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}
   
   - name: sync-helm
