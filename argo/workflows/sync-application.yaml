@@ -11,6 +11,8 @@ spec:
       - name: application-name
       - name: tag
         value: latest
+      - name: branch
+        value: HEAD
 
   templates:
   - name: sync-application
@@ -27,6 +29,8 @@ spec:
             value: "{{workflow.parameters.tag}}"
           - name: namespace
             value: "{{workflow.parameters.namespace}}"
+          - name: branch
+            value: "{{workflow.parameters.branch}}"
 
   - name: sync-git
     inputs:
@@ -34,6 +38,7 @@ spec:
       - name: application-name
       - name: tag
       - name: namespace
+      - name: branch
     steps:                              # You should only reference external "templates" in a "steps" or "dag" "template".
       - - name: sync
           templateRef:                  # You can reference a "template" from another "WorkflowTemplate or ClusterWorkflowTemplate" using this field
@@ -47,4 +52,6 @@ spec:
               value: "{{inputs.parameters.tag}}"
             - name: namespace
               value: "{{inputs.parameters.namespace}}"
+            - name: branch
+              value: "{{inputs.parameters.branch}}"
   
