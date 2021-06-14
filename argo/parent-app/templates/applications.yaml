@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parent-apps-{{ .Release.Name }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    path: argo/apps
+    repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy: {}
