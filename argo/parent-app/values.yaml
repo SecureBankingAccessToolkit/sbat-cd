@@ -1,0 +1,10 @@
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  source:
+    targetRevision: HEAD
+
+externalCert:
+  projectId: example-project
