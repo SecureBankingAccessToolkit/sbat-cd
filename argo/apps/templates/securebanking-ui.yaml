@@ -2,6 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: securebanking-ui-{{ .Release.Name }}
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: auth=eu.gcr.io/{{ .Values.image.devRepo }}/securebanking/ui/auth:latest, rcs-ui=eu.gcr.io/{{ .Values.image.devRepo }}/securebanking/ui/rcs:latest, swagger=eu.gcr.io/{{ .Values.image.devRepo }}/securebanking/ui/swagger:latest
+    argocd-image-updater.argoproj.io/auth.helm.image-tag: {{ .Values.image.tagParameter }}
+    argocd-image-updater.argoproj.io/auth.update-strategy: digest
+    argocd-image-updater.argoproj.io/rcs-ui.helm.image-tag: {{ .Values.image.tagParameter }}
+    argocd-image-updater.argoproj.io/rcs-ui.update-strategy: digest
+    argocd-image-updater.argoproj.io/swagger.helm.image-tag: {{ .Values.image.tagParameter }}
+    argocd-image-updater.argoproj.io/swagger.update-strategy: digest
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -14,6 +22,8 @@ spec:
       parameters:
       - name: ingress.domain
         value: {{ .Values.config.domain }}
+      - name: image.tagDelimiter
+        value: {{ .Values.image.tagDelimiter | quote }}
     path: _infra/helm/securebanking-ui
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
     targetRevision: {{ .Values.spec.source.targetRevision }}

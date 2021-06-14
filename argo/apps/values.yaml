@@ -8,6 +8,11 @@ spec:
 
   syncPolicy: {}
 
+image:
+  devRepo: sbat-gcr-develop
+  tagDelimiter: "@"
+  tagParameter: deployment.imageOverride.tag
+
 config:
   domain: localhost
   externalCert:

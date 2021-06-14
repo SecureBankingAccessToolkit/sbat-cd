@@ -2,6 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: securebanking-rs-{{ .Release.Name }}
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: rs=eu.gcr.io/{{ .Values.image.devRepo }}/securebanking/securebanking-openbanking-uk-rs:latest
+    argocd-image-updater.argoproj.io/rs.helm.image-tag: {{ .Values.image.tagParameter }}
+    argocd-image-updater.argoproj.io/rs.update-strategy: digest
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -14,6 +18,8 @@ spec:
       parameters:
       - name: ingress.domain
         value: {{ .Values.config.domain }}
+      - name: image.tagDelimiter
+        value: {{ .Values.image.tagDelimiter | quote }}
     path: _infra/helm/securebanking-openbanking-uk-rs
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-rs
     targetRevision: {{ .Values.spec.source.targetRevision }}
