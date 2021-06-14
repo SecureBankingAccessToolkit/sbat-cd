@@ -2,6 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: securebanking-spring-config-server-{{ .Release.Name }}
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: config=eu.gcr.io/{{ .Values.image.devRepo }}/securebanking/securebanking-spring-config-server:latest
+    argocd-image-updater.argoproj.io/config.helm.image-tag: {{ .Values.image.tagParameter }}
+    argocd-image-updater.argoproj.io/config.update-strategy: digest
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,6 +14,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
+    helm:
+      parameters:
+      - name: image.tagDelimiter
+        value: {{ .Values.image.tagDelimiter | quote }}
     path: _infra/helm/securebanking-spring-config-server
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-spring-config-server
     targetRevision: {{ .Values.spec.source.targetRevision }}

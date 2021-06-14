@@ -20,3 +20,8 @@ You can supply a helm chart directly from a helm repository, in this case the fo
 - `targetRevision`: The helm chart version
 
 See the [MongoDB](./templates/mongodb.yaml) Application manifest for an example
+
+## Automated updating
+The application definitions allow developers to update images in their environments when they push a new commit to an open PR. The Argo [image-updater](https://argocd-image-updater.readthedocs.io/en/latest/install/strategies/#update-to-the-most-recent-pushed-version-of-a-tag) is always monitoring for new images in our gcr repo. Our Application manifests have a `digest` update strategy which specifically looks for changes to mutable tags (`latest` or `pr-*`). When a change is detected the image-updater will modify the helm parameter `deployment.imageOverride.tag` with the new digest ad argo will take over with the automated update. The image-updater is currently set to poll for a new digest every 2 mins so you can expect some delay when you push a commit.
+
+A digest delimiter must be set in the repo for the correct deployment. deploying a digest takes the form `some/image@sha256:abc...`. The `@` symbol must be handled via the helm chart. Our helm charts default to the form `some/image:tag` but have been made configurable.
