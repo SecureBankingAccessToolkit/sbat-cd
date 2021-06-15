@@ -12,14 +12,23 @@ spec:
 ingress:
   domain: localhost
 
-tag:
-  ui:
-    auth: latest
-    rcs: latest
-    swagger: latest
-  api:
-    rcs: latest
-    rs: latest
+config:
+  tag: latest
+  branch: HEAD
+rcs:
+  tag: latest
+  branch: HEAD
+rs:
+  tag: latest
+  branch: HEAD
+ui:
+  branch: HEAD
+  auth:
+    tag: latest
+  rcs:
+    tag: latest
+  swagger:
+    tag: latest
 
 mongodb:
   auth:
