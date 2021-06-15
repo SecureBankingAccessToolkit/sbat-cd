@@ -13,6 +13,15 @@ config:
   externalCert:
     projectId: example-project
 
+tag:
+  ui:
+    auth: latest
+    rcs: latest
+    swagger: latest
+  api:
+    rcs: latest
+    rs: latest
+
 mongodb:
   auth:
     enabled: false

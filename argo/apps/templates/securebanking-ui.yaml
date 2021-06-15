@@ -14,6 +14,12 @@ spec:
       parameters:
       - name: ingress.domain
         value: {{ .Values.config.domain }}
+      - name: auth.deployment.imageOverride.tag
+        value: {{ .Values.tag.ui.auth }}
+      - name: rcs.deployment.imageOverride.tag
+        value: {{ .Values.tag.ui.rcs }}
+      - name: swagger.deployment.imageOverride.tag
+        value: {{ .Values.tag.ui.swagger }}
     path: _infra/helm/securebanking-ui
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
     targetRevision: {{ .Values.spec.source.targetRevision }}
