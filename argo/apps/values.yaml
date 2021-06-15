@@ -6,7 +6,8 @@ spec:
   source:
     targetRevision: HEAD
 
-  syncPolicy: {}
+  syncPolicy: 
+    automated: {}
 
 ingress:
   domain: localhost
