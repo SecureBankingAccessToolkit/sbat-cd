@@ -27,9 +27,11 @@ spec:
         template: sync-git
         arguments:
           parameters:
-          - name: application-name
-            value: namespace-setup-{{workflow.parameters.namespace}}
-      - name: sync-parent-app
+          - name: parent-name
+            value: namespace-setup
+          - name: namespace
+            value: "{{workflow.parameters.namespace}}"
+    - - name: sync-parent-app
         template: sync-git
         arguments:
           parameters:
@@ -50,6 +52,8 @@ spec:
   - name: sync-git
     inputs:
       parameters:
+      - name: parent-name
+        value: securebanking
       - name: namespace
     steps:
       - - name: sync
@@ -58,6 +62,8 @@ spec:
             template: sync-parent
           arguments:
             parameters:
+            - name: parent-name
+              value: "{{inputs.parameters.parent-name}}"
             - name: namespace
               value: "{{inputs.parameters.namespace}}"
   
