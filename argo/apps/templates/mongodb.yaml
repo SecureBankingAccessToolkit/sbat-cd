@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: mongodb-{{ .Release.Name }}
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: Sync
 spec:
   destination:
     namespace: {{ .Values.spec.destination.namespace }}

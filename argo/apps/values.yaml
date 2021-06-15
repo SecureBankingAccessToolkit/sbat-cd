@@ -12,6 +12,9 @@ spec:
 ingress:
   domain: localhost
 
+externalCert:
+  projectId: example-project
+
 config:
   tag: latest
   branch: HEAD

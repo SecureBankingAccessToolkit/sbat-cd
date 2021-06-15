@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-setup-{{ .Release.Name }}
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Release.Name }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    helm:
+      parameters:
+      - name: externalCert.projectId
+        value: {{ .Values.externalCert.projectId }}
+    path: cluster-setup/namespace-setup
+    repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: config-{{ .Release.Name }}
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: Sync
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
