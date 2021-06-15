@@ -6,5 +6,8 @@ spec:
   source:
     targetRevision: HEAD
 
+ingress:
+  domain: localhost
+
 externalCert:
   projectId: example-project

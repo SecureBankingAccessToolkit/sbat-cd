@@ -10,6 +10,10 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
+    helm:
+      parameters:
+      - name: ingress.domain
+        value: {{ .Values.ingress.domain }}
     path: argo/apps
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}
