@@ -8,10 +8,8 @@ spec:
 
   syncPolicy: {}
 
-config:
+ingress:
   domain: localhost
-  externalCert:
-    projectId: example-project
 
 tag:
   ui:

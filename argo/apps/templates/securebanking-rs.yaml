@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
       - name: ingress.domain
-        value: {{ .Values.config.domain }}
+        value: {{ .Values.ingress.domain }}
       - name: deployment.imageOverride.tag
         value: {{ .Values.tag.api.rs }}
     path: _infra/helm/securebanking-openbanking-uk-rs
