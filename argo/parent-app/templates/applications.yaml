@@ -13,17 +13,7 @@ spec:
     helm:
       parameters:
       - name: ingress.domain
-        value: {{ .Values.config.domain }}
-      # - name: auth.deployment.imageOverride.tag
-      #   value: {{ .Values.tag.ui.auth }}
-      # - name: rcs.deployment.imageOverride.tag
-      #   value: {{ .Values.tag.ui.rcs }}
-      # - name: swagger.deployment.imageOverride.tag
-      #   value: {{ .Values.tag.ui.swagger }}
-      # - name: auth.deployment.imageOverride.tag
-      #   value: {{ .Values.tag.api.rs }}
-      # - name: rcs.deployment.imageOverride.tag
-      #   value: {{ .Values.tag.api.rcs }}
+        value: {{ .Values.ingress.domain }}
     path: argo/apps
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}

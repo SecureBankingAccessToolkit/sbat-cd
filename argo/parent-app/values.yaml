@@ -6,22 +6,8 @@ spec:
   source:
     targetRevision: HEAD
 
-config:
+ingress:
   domain: localhost
-
-securebanking-rcs-dev:
-  deployment:
-    imageOverride:
-      tag: test-pr
-      
-tag:
-  ui:
-    auth: latest
-    rcs: latest
-    swagger: latest
-  api:
-    rcs: latest
-    rs: latest
 
 externalCert:
   projectId: example-project
