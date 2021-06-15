@@ -28,47 +28,11 @@ spec:
         arguments:
           parameters:
           - name: application-name
-            value: namespace-setup
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
-    - - name: Mongodb
-        template: sync-helm
-        arguments:
-          parameters:
-          - name: application-name
-            value: mongodb
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
-      - name: securebanking-spring-config-server
+            value: namespace-setup-{{workflow.parameters.namespace}}
+      - name: sync-parent-app
         template: sync-git
         arguments:
           parameters:
-          - name: application-name
-            value: securebanking-spring-config-server
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
-    - - name: securebanking-rs
-        template: sync-git
-        arguments:
-          parameters:
-          - name: application-name
-            value: securebanking-rs
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
-      - name: securebanking-rcs
-        template: sync-git
-        arguments:
-          parameters:
-          - name: application-name
-            value: securebanking-rcs
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
-      - name: securebanking-ui
-        template: sync-git
-        arguments:
-          parameters:
-          - name: application-name
-            value: securebanking-ui
           - name: namespace
             value: "{{workflow.parameters.namespace}}"
   
@@ -86,33 +50,14 @@ spec:
   - name: sync-git
     inputs:
       parameters:
-      - name: application-name
       - name: namespace
-    steps:                              # You should only reference external "templates" in a "steps" or "dag" "template".
+    steps:
       - - name: sync
-          templateRef:                  # You can reference a "template" from another "WorkflowTemplate or ClusterWorkflowTemplate" using this field
-            name: argocd-sync-and-wait   # This is the name of the "WorkflowTemplate or ClusterWorkflowTemplate" CRD that contains the "template" you want
-            template: sync-git # This is the name of the "template" you want to reference
-          arguments:                    # You can pass in arguments as normal
+          templateRef:
+            name: argocd-sync-and-wait
+            template: sync-parent
+          arguments:
             parameters:
-            - name: application-name
-              value: "{{inputs.parameters.application-name}}"
             - name: namespace
               value: "{{inputs.parameters.namespace}}"
   
-  - name: sync-helm
-    inputs:
-      parameters:
-      - name: application-name
-      - name: namespace
-    steps:                              # You should only reference external "templates" in a "steps" or "dag" "template".
-      - - name: sync
-          templateRef:                  # You can reference a "template" from another "WorkflowTemplate or ClusterWorkflowTemplate" using this field
-            name: argocd-sync-and-wait   # This is the name of the "WorkflowTemplate or ClusterWorkflowTemplate" CRD that contains the "template" you want
-            template: sync-helm  # This is the name of the "template" you want to reference
-          arguments:                    # You can pass in arguments as normal
-            parameters:
-            - name: application-name
-              value: "{{inputs.parameters.application-name}}"
-            - name: namespace
-              value: "{{inputs.parameters.namespace}}"

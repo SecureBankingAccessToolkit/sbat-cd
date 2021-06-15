@@ -59,8 +59,7 @@ spec:
       source: |
         name="$(echo '{{inputs.parameters.application-name}}' | rev | cut -d '-' -f 1 | rev)"
         echo 'pr-{{inputs.parameters.pr-number}}' > /tmp/tag.txt
-        echo securebanking-$name
-        echo securebanking-$name > /tmp/service.txt
+        echo $name > /tmp/service.txt
         echo '{{inputs.parameters.actor}}' > /tmp/actor.txt
     outputs:
       parameters:
@@ -75,12 +74,13 @@ spec:
     inputs:
       parameters:
       - name: application-name
+      - name: namespace
       - name: tag
       - name: branch
     steps:
       - - name: sync
           templateRef:
-            name: argocd-sync-and-wait
+            name: sync-application-via-parent
             template: sync-git
           arguments:
             parameters:
