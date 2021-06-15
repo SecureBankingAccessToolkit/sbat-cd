@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: securebanking-spring-config-server-{{ .Release.Name }}
+  name: config-{{ .Release.Name }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:

@@ -23,12 +23,7 @@ rs:
   branch: HEAD
 ui:
   branch: HEAD
-  auth:
-    tag: latest
-  rcs:
-    tag: latest
-  swagger:
-    tag: latest
+  tag: latest
 
 mongodb:
   auth:

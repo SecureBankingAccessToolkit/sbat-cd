@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: securebanking-ui-{{ .Release.Name }}
+  name: ui-{{ .Release.Name }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,11 +15,11 @@ spec:
       - name: ingress.domain
         value: {{ .Values.ingress.domain }}
       - name: auth.deployment.imageOverride.tag
-        value: {{ .Values.ui.auth.tag }}
+        value: {{ .Values.ui.tag }}
       - name: rcs.deployment.imageOverride.tag
-        value: {{ .Values.ui.rcs.tag }}
+        value: {{ .Values.ui.tag }}
       - name: swagger.deployment.imageOverride.tag
-        value: {{ .Values.ui.swagger.tag }}
+        value: {{ .Values.ui.tag }}
     path: _infra/helm/securebanking-ui
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
     targetRevision: {{ .Values.ui.branch }}
