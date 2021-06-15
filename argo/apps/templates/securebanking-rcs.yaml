@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: securebanking-rcs-{{ .Release.Name }}
+  name: rcs-{{ .Release.Name }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,9 +15,9 @@ spec:
       - name: ingress.domain
         value: {{ .Values.ingress.domain }}
       - name: deployment.imageOverride.tag
-        value: {{ .Values.tag.api.rcs }}
+        value: {{ .Values.rcs.tag }}
     path: _infra/helm/securebanking-openbanking-uk-rcs
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-rcs
-    targetRevision: {{ .Values.spec.source.targetRevision }}
+    targetRevision: {{ .Values.rcs.branch }}
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}

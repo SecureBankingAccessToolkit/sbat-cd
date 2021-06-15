@@ -13,19 +13,20 @@ metadata:
 spec:
   entrypoint: argocd-sync-and-wait
   templates:
-  - name: sync-git
+  - name: sync-application-via-parent
     inputs:
       parameters:
       - name: argocd-version
         value: v2.0.0
       - name: application-name
+      - name: parent-name
+        value: securebanking
       - name: namespace
+        value: dev
       - name: tag
         value: latest
       - name: branch
         value: HEAD
-      - name: flags
-        value: --
     script:
       image: argoproj/argocd:{{inputs.parameters.argocd-version}}
       command: [bash]
@@ -44,19 +45,20 @@ spec:
         #!/bin/bash
 
         set -euo pipefail
-        argocd app set {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} -p deployment.imageOverride.tag={{inputs.parameters.tag}}
-        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --revision {{inputs.parameters.branch}} {{inputs.parameters.flags}}
-        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}
+        argocd app delete {{inputs.parameters.application-name}}-{{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} --cascade --yes
+        argocd app set {{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} -p {{inputs.parameters.application-name}}.tag={{inputs.parameters.tag}} -p {{inputs.parameters.application-name}}.branch={{inputs.parameters.branch}}
+        argocd app sync {{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}}
+        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} --health
   
-  - name: sync-helm
+  - name: sync-parent
     inputs:
       parameters:
       - name: argocd-version
         value: v2.0.0
-      - name: application-name
+      - name: parent-name
+        value: securebanking
       - name: namespace
-      - name: flags
-        value: --
+        value: dev
     script:
       image: argoproj/argocd:{{inputs.parameters.argocd-version}}
       command: [bash]
@@ -75,6 +77,4 @@ spec:
         #!/bin/bash
 
         set -euo pipefail
-        
-        argocd app sync {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} {{inputs.parameters.flags}}
-        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.namespace}} --health {{inputs.parameters.flags}}
+        argocd app sync {{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}}
