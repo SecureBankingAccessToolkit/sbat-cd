@@ -7,7 +7,9 @@ spec:
     targetRevision: HEAD
 
   syncPolicy: 
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
 
 ingress:
   domain: localhost
