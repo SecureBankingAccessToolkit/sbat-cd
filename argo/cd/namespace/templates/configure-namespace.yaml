@@ -3,7 +3,7 @@ kind: Job
 metadata:
   generateName: configure-namespace-
   annotations:
-    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
