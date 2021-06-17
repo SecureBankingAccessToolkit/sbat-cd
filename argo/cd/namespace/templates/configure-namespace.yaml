@@ -21,7 +21,7 @@ spec:
           args:
             - |
               apt-get update
-              apt-get install jq
+              apt-get -y install jq
               manager=""
               until [ $manager == "replicator" ]
               do
