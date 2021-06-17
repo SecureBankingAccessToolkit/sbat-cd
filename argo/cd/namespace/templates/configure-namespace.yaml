@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: apply-gcr-secret-to-sa
+  generateName: apply-config-
 spec:
   template:
     spec:
