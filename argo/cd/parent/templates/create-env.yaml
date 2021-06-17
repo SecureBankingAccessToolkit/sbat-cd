@@ -20,8 +20,6 @@ spec:
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    automated: 
-      selfHeal: true
-      prune: true
+    automated: {}
     syncOptions:
       - CreateNamespace=true
