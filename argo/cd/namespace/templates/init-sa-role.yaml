@@ -7,8 +7,19 @@ rules:
       - ""
     resources:
       - serviceaccounts
-      - secrets
     verbs:
       - get
       - patch
       - update
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - delete
