@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: apply-config-
+  generateName: configure-namespace-
 spec:
   template:
     spec:
