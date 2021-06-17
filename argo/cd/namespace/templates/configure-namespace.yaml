@@ -20,11 +20,13 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              apt-get update
+              apt-get install jq
               manager=""
               until [ $manager == "replicator" ]
               do
               echo "waiting for gcr-secret replication"
-              manager=$(kubectl get secret -n john gcr-secret -o json | jq '.metadata.managedFields[].manager' -r | grep "replicator")
+              manager=$(kubectl get secret -n {{ .Release.Name }} gcr-secret -o json | jq '.metadata.managedFields[].manager' -r | grep "replicator")
               sleep 1
               done
               kubectl patch sa {{ .Values.serviceAccount }} -p '{"imagePullSecrets": [{"name": "{{ .Values.imageRepoSecret.name }}"}]}'
