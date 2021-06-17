@@ -2,8 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: apply-gcr-secret-to-sa
-  annotations:
-    argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
