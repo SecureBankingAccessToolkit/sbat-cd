@@ -20,6 +20,13 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              manager=""
+              until [ $manager == "replicator" ]
+              do
+              echo "waiting for gcr-secret replication"
+              manager=$(kubectl get secret -n john gcr-secret -o json | jq '.metadata.managedFields[].manager' -r | grep "replicator")
+              sleep 1
+              done
               kubectl patch sa {{ .Values.serviceAccount }} -p '{"imagePullSecrets": [{"name": "{{ .Values.imageRepoSecret.name }}"}]}'
               kubectl apply -f /opt/deploymentConfiguration.yaml -n {{ .Values.argoNamespace }}
           volumeMounts:
