@@ -19,7 +19,7 @@ spec:
           args:
             - |
               kubectl patch sa {{ .Values.serviceAccount }} -p '{"imagePullSecrets": [{"name": "{{ .Values.imageRepoSecret.name }}"}]}'
-              kubectl apply -f /opt/deploymentConfiguration.yaml
+              kubectl apply -f /opt/deploymentConfiguration.yaml -n {{ .Values.argoNamespace }}
           volumeMounts:
             - name: argo-configuration
               mountPath: /opt
