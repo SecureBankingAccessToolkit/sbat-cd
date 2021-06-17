@@ -20,6 +20,7 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              kubectl apply -f /opt/gcr-secret.yaml
               until [ $annotation -eq 1 ]
               do
               echo "waiting for gcr-secret replication"
