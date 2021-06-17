@@ -4,7 +4,7 @@ metadata:
   name: argo-applications
 rules:
   - apiGroups:
-      - "argoproj.io"
+      - argoproj.io
     resources:
       - applications
     verbs:
