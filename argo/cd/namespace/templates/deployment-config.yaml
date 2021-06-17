@@ -14,7 +14,7 @@ data:
       destination:
         namespace: {{ .Values.argoNamespace }}
         server: {{ .Values.spec.destination.server }}
-      project: {{ .Release.Name }}
+      project: {{ .Values.spec.project }}
       source:
         helm:
           parameters:
