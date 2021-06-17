@@ -23,7 +23,7 @@ spec:
               until [ $annotation -eq 1 ]
               do
               echo "waiting for gcr-secret replication"
-              annotation=$(kubectl describe secret -n {{ .Release.Name }} gcr-secret | grep replicator.v1.mittwald.de/replicated-ke:ys | wc -l)
+              annotation=$(kubectl describe secret gcr-secret | grep replicator.v1.mittwald.de/replicated-keys | wc -l)
               sleep 1
               done
               kubectl patch sa {{ .Values.serviceAccount }} -p '{"imagePullSecrets": [{"name": "{{ .Values.imageRepoSecret.name }}"}]}'
