@@ -5,6 +5,10 @@ metadata:
 spec:
   template:
     spec:
+      volumes:
+        - name: argo-configuration
+          configMap: 
+            name: deployment
       serviceAccountName: job-sa
       restartPolicy: Never
       containers:
@@ -15,3 +19,8 @@ spec:
           args:
             - |
               kubectl patch sa {{ .Values.serviceAccount }} -p '{"imagePullSecrets": [{"name": "{{ .Values.imageRepoSecret.name }}"}]}'
+              kubectl apply -f /opt/deploymentConfiguration.yaml
+          volumeMounts:
+            - name: argo-configuration
+              mountPath: /opt
+              readOnly: true
