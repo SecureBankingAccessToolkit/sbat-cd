@@ -1,3 +1,10 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  source:
+    targetRevision: HEAD
+
 serviceAccount: default
 
 imageRepoSecret:
@@ -8,3 +15,5 @@ externalCert:
   enabled: true
   projectId: example-project
   secretName: sslcert
+
+argoNamespace: argocd
