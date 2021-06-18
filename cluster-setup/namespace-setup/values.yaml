@@ -4,6 +4,8 @@ imageRepoSecret:
   namespace: default
   name: gcr-secret
 
+projectId: example-project
+
 externalCert:
   enabled: true
   projectId: example-project
