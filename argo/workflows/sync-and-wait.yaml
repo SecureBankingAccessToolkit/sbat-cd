@@ -45,10 +45,8 @@ spec:
         #!/bin/bash
 
         set -euo pipefail
-        argocd app delete {{inputs.parameters.application-name}}-{{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} --cascade --yes
         argocd app set {{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} -p {{inputs.parameters.application-name}}.tag={{inputs.parameters.tag}} -p {{inputs.parameters.application-name}}.branch={{inputs.parameters.branch}}
-        argocd app sync {{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}}
-        argocd app wait {{inputs.parameters.application-name}}-{{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} --health
+        argocd app delete {{inputs.parameters.application-name}}-{{inputs.parameters.parent-name}}-{{inputs.parameters.namespace}} --cascade --yes || true
   
   - name: sync-parent
     inputs:

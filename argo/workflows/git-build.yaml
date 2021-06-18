@@ -75,13 +75,14 @@ spec:
       parameters:
       - name: application-name
       - name: namespace
+        value: dev
       - name: tag
       - name: branch
     steps:
       - - name: sync
           templateRef:
-            name: sync-application-via-parent
-            template: sync-git
+            name: argocd-sync-and-wait
+            template: sync-application-via-parent
           arguments:
             parameters:
             - name: application-name
