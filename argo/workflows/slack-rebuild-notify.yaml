@@ -23,7 +23,7 @@ spec:
       image: curlimages/curl:7.76.0
       command: [sh]
       env:
-        - name: SLACK_WEBOOK_URL
+        - name: SLACK_WEBHOOK_URL
           valueFrom:
             secretKeyRef:
               name: slack-webhook
