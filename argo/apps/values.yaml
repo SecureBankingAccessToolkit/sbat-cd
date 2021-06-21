@@ -30,3 +30,6 @@ ui:
 mongodb:
   auth:
     enabled: false
+
+externalCert:
+  projectId: example-project
