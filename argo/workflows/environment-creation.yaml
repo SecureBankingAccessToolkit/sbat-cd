@@ -23,14 +23,6 @@ spec:
           - name: namespace
             value: "{{workflow.parameters.namespace}}"
         when: "{{workflow.parameters.clean}}"
-    - - name: init-namespace
-        template: sync-git
-        arguments:
-          parameters:
-          - name: parent-name
-            value: namespace-setup
-          - name: namespace
-            value: "{{workflow.parameters.namespace}}"
     - - name: sync-parent-app
         template: sync-git
         arguments:
