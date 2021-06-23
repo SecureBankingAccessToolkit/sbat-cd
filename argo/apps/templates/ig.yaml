@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ig-{{ .Release.Name }}
+spec:
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/overlay/7.0/obdemo-bank/dev
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-demo
+    targetRevision: HEAD
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
