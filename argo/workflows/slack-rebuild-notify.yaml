@@ -28,7 +28,9 @@ spec:
             secretKeyRef:
               name: slack-webhook
               key: url
+        - name: DOMAIN
+          value: forgerock.financial
       source: |
         #!/bin/sh
-        SLACK_MESSAGE=$(echo 'Environment built successfully! \n namespace: `{{inputs.parameters.namespace}}`')
+        SLACK_MESSAGE=$(echo "sbat-dev environment building in the `{{inputs.parameters.namespace}}` namespace \n\n rs: `rs.{{inputs.parameters.namespace}}.$DOMAIN`\n rcs: `rcs.{{inputs.parameters.namespace}}.$DOMAIN`\n rcs-ui: `rcs-ui.{{inputs.parameters.namespace}}.$DOMAIN`\n auth-ui: `auth.{{inputs.parameters.namespace}}.$DOMAIN`\n swagger-ui: `swagger.{{inputs.parameters.namespace}}.$DOMAIN`")
         curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$SLACK_MESSAGE\"}" $SLACK_WEBHOOK_URL
