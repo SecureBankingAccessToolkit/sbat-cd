@@ -16,6 +16,8 @@ spec:
         value: {{ .Values.ingress.domain }}
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId}}
+      - name: spec.destination.namespace
+        value: {{ .Release.Name }}
     path: argo/apps
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}
