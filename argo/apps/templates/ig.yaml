@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize/overlay/7.0/obdemo-bank/dev
+    path: kustomize/overlay/7.0/obdemo-bank/{{ .Release.Name }}
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-demo
     targetRevision: HEAD
   syncPolicy:
