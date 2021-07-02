@@ -1,10 +1,6 @@
 serviceAccount: default
 
-imageRepoSecret:
-  namespace: default
-  name: gcr-secret
-
 externalCert:
-  enabled: true
+  defaultWildcard: true
   projectId: example-project
   secretName: sslcert
