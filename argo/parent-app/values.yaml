@@ -11,3 +11,4 @@ ingress:
 
 externalCert:
   projectId: example-project
+  defaultWildcard: true

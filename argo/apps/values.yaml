@@ -33,3 +33,4 @@ mongodb:
 
 externalCert:
   projectId: example-project
+  defaultWildcard: true
