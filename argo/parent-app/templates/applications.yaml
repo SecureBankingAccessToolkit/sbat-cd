@@ -17,7 +17,7 @@ spec:
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId }}
       - name: externalCert.defaultWildcard
-        value: {{ .Values.externalCert.defaultWildcard }}
+        value: {{ .Values.externalCert.defaultWildcard | quote }}
       - name: spec.destination.namespace
         value: {{ .Release.Name }}
     path: argo/apps
