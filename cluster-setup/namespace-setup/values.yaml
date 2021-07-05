@@ -1,6 +1,6 @@
 serviceAccount: default
 
 externalCert:
-  defaultWildcard: true
+  defaultWildcard: "true"
   projectId: example-project
   secretName: sslcert
