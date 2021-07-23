@@ -44,6 +44,8 @@ spec:
             value: "{{steps.parse-body.outputs.parameters.tag}}"
           - name: branch
             value: "{{workflow.parameters.branch}}"
+          - name: namespace
+            value: "{{workflow.parameters.namespace}}"
 
   - name: git-body
     inputs:
@@ -80,14 +82,14 @@ spec:
     steps:
       - - name: sync
           templateRef:
-            name: sync-application-via-parent
-            template: sync-git
+            name: argocd-sync-and-wait
+            template: sync-application-via-parent
           arguments:
             parameters:
             - name: application-name
               value: "{{inputs.parameters.application-name}}"
             - name: namespace
-              value: "{{workflow.parameters.namespace}}"
+              value: "{{inputs.parameters.namespace}}"
             - name: tag
               value: "{{inputs.parameters.tag}}"
             - name: branch
