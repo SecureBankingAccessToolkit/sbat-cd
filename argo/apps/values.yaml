@@ -34,3 +34,6 @@ mongodb:
 externalCert:
   projectId: example-project
   defaultWildcard: true
+
+cdm:
+  enabled: "false"
