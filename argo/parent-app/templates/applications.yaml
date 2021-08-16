@@ -19,6 +19,9 @@ spec:
       - name: externalCert.defaultWildcard
         value: {{ .Values.externalCert.defaultWildcard | quote }}
         forceString: true
+      - name: cdm.enabled
+        value: {{ .Values.cdm.enabled | quote }}
+        forceString: true
       - name: spec.destination.namespace
         value: {{ .Release.Name }}
     path: argo/apps
