@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: iam-{{ .Release.Name }}
+  name: iam-init-{{ .Release.Name }}
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   finalizers:
@@ -13,17 +13,9 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
-    helm:
-      parameters:
-      - name: ingress.domain
-        value: {{ .Values.ingress.domain }}
-      - name: mongodb.host
-        value: "mongodb-{{ .Release.Name }}"
-      - name: deployment.imageOverride.tag
-        value: {{ .Values.rs.tag }}
-    path: _infra/helm/securebanking-openbanking-uk-rs
-    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-rs
-    targetRevision: {{ .Values.rs.branch }}
+    path: _infra/helm/securebanking-openbanking-uk-fidc-initializer
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-fidc-initializer
+    targetRevision: HEAD
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
 {{- end }}
