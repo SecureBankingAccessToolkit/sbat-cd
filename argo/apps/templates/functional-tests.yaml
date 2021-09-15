@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: functional-tests-{{ .Release.Name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.spec.project }}
+  source:
+    path: _infra/kubernetes
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-functional-tests
+    targetRevision: HEAD
+  syncPolicy:
+    {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
