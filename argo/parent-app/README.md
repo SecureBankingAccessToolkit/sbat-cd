@@ -1,3 +1,0 @@
-## parent-app
-The parent app manages the apps definitions. The apps themselves are set to automated sync policy where the parent app is set to manual sync. This allows us a simple way of destroying applications and bringing them back. We use this for synchronising an application when a ci pipeline has created a new container but with a pre-existing tag (`latest`, `pr-21` etc).
-This type of pattern is called the [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/) pattern and is very useful for creating a new environment with a single click - the parent app references a series of child [application definitions](../apps).
