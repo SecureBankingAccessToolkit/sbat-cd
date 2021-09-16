@@ -16,6 +16,6 @@ spec:
   source:
     path: _infra/kubernetes
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-functional-tests
-    targetRevision: sync-fail
+    targetRevision: HEAD
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
