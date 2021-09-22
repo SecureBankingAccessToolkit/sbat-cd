@@ -16,9 +16,6 @@ spec:
       parameters:
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId }}
-      - name: externalCert.defaultWildcard
-        value: {{ .Values.externalCert.defaultWildcard | quote }}
-        forceString: true
     path: cluster/certificate
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}
