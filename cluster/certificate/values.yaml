@@ -1,3 +1,5 @@
+defaultWildcardSecret: false
+
 serviceAccount: default
 
 externalCert:
