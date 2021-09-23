@@ -7,6 +7,9 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  kustomize:
+    images:
+      - 'ig=eu.gcr.io/sbat-gcr-develop/securebanking/gate/ig:{{ .Values.ig.tag }}'
   destination:
     namespace: {{ .Values.spec.destination.namespace }}
     server: https://kubernetes.default.svc
@@ -14,6 +17,6 @@ spec:
   source:
     path: kustomize/overlay/7.0/obdemo-bank/{{ .Values.spec.destination.namespace }}
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-demo
-    targetRevision: HEAD
+    targetRevision: {{ .Values.ig.branch }}
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
