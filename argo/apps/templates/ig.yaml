@@ -14,6 +14,9 @@ spec:
   source:
     path: kustomize/overlay/7.0/obdemo-bank/{{ .Values.spec.destination.namespace }}
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-demo
-    targetRevision: HEAD
+    targetRevision: {{ .Values.ig.branch }}
+    kustomize:
+      images:
+        - 'ig=eu.gcr.io/sbat-gcr-develop/securebanking/gate/ig:{{ .Values.ig.tag }}'
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}

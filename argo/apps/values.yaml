@@ -24,8 +24,11 @@ rs:
   tag: latest
   branch: HEAD
 ui:
-  branch: HEAD
   tag: latest
+  branch: HEAD
+ig:
+  tag: latest
+  branch: HEAD
 
 mongodb:
   auth:
