@@ -26,6 +26,9 @@ rs:
 ui:
   tag: latest
   branch: HEAD
+  templateName: forgerock
+  authorizationServer: localhost
+  remoteConsentServer: localhost
 ig:
   tag: latest
   branch: HEAD
