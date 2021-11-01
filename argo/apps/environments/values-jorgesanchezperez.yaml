@@ -4,4 +4,4 @@ cdm:
 ui:
   templateName: forgerock
   authorizationServer: https://openam-forgerock-securebankingaccelerato.forgeblocks.com
-  remoteConsentServer: https://rcs.nightly.forgerock.financial
+  remoteConsentServer: https://rcs.jorgsanchezperez.forgerock.financial
