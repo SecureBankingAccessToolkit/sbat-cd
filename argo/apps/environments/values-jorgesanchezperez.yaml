@@ -1,7 +1,2 @@
 cdm:
-  enabled: "true"
-
-ui:
-  templateName: forgerock
-  authorizationServer: https://openam-forgerock-securebankingaccelerato.forgeblocks.com
-  remoteConsentServer: https://rcs.jorgsanchezperez.forgerock.financial
+  enabled: "false"
