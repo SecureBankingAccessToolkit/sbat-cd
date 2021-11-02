@@ -3,6 +3,9 @@ This helm chart contains the [Argo Application definitions](https://argoproj.git
 
 An Application can be either a helm/kustomize chart that lives in git or a helm repository.
 
+## Environments
+The helm chart have the environment (namespaces) and a values file to derive specific environment param values.
+- Folder `environments/values-${environment}.yaml`
 ### Git
 A git application must supply the following:
 
