@@ -14,21 +14,27 @@ spec:
 ingress:
   domain: localhost
 
+cors:
+  originEnds: localhost
+
 config:
   tag: latest
   branch: HEAD
+
 rcs:
   tag: latest
   branch: HEAD
+
 rs:
   tag: latest
   branch: HEAD
+
 ui:
   tag: latest
   branch: HEAD
+  # Pod env default values (overwritten in ./environments/values-${namespace}.yaml)
   templateName: forgerock
-  authorizationServer: localhost
-  remoteConsentServer: localhost
+
 ig:
   tag: latest
   branch: HEAD
@@ -40,5 +46,22 @@ mongodb:
 externalCert:
   projectId: example-project
 
-cdm:
-  enabled: "false"
+use:
+  fidc: "false"
+    initializer: "false"
+
+urls:
+  ig:
+    server: https://obdemo.dev.forgerock.financial
+  authorization:
+    server: https://iam.dev.forgerock.financial
+  rcsUI:
+    server: https://rcs-ui.dev.forgerock.financial
+  rcs:
+    server: https://rcs.dev.forgerock.financial
+  rs:
+    server: https://rs.dev.forgerock.financial
+  swaggerUI:
+    server: https://swagger.dev.forgerock.financial
+  swagger:
+    json: localhost

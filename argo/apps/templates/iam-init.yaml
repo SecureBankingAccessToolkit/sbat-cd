@@ -1,4 +1,4 @@
-{{- if eq .Values.cdm.enabled "true" }}
+{{- if and (eq .Values.use.fidc "true") (eq .Values.use.fidc.initializer "true") }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

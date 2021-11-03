@@ -1,2 +1,10 @@
-cdm:
-  enabled: "false"
+ui:
+  # Pod env
+  remoteConsentServer: https://rcs.jorgesanchezperez.forgerock.financial
+
+rcs:
+  # pod env
+  cors:
+    originEnds: jorgesanchezperez.forgerock.financial
+  rs:
+    server: https://rs.jorgesanchezperez.forgerock.financial
