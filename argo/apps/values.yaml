@@ -32,7 +32,6 @@ rs:
 ui:
   tag: latest
   branch: HEAD
-  # Pod env default values (overwritten in ./environments/values-${namespace}.yaml)
   templateName: forgerock
 
 ig:
