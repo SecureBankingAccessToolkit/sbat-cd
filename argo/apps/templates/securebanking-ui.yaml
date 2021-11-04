@@ -16,18 +16,20 @@ spec:
       parameters:
       - name: ingress.domain
         value: {{ .Values.ingress.domain }}
-      - name: rcs.deployment.imageOverride.tag
+      - name: rcsUI.deployment.imageOverride.tag
         value: {{ .Values.ui.tag }}
-      - name: swagger.deployment.imageOverride.tag
+      - name: swaggerUI.deployment.imageOverride.tag
         value: {{ .Values.ui.tag }}
-      - name: swagger.deployment.templateName
+      - name: swaggerUI.deployment.templateName
         value: {{ .Values.ui.templateName }}
-      - name: rcs.deployment.templateName
+      - name: rcsUI.deployment.templateName
         value: {{ .Values.ui.templateName }}
-      - name: rcs.deployment.authorizationServer
-        value: {{ .Values.ui.authorizationServer }}
-      - name: rcs.deployment.remoteConsentServer
-        value: {{ .Values.ui.remoteConsentServer }}
+      - name: deployment.urls.authorization.server
+        value: {{ .Values.urls.authorization.server }}
+      - name: deployment.urls.rcs.server
+        value: {{ .Values.urls.rcs.server }}
+      - name: deployment.urls.ig.server
+        value: {{ .Values.urls.ig.server}}
     path: _infra/helm/securebanking-ui
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
     targetRevision: {{ .Values.ui.branch }}
