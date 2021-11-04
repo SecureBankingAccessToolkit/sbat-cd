@@ -1,10 +1,16 @@
-ui:
-  # Pod env
-  remoteConsentServer: https://rcs.jorgesanchezperez.forgerock.financial
-
-rcs:
-  # pod env
-  cors:
-    originEnds: jorgesanchezperez.forgerock.financial
+urls:
+  ig:
+    server: https://obdemo.jorgesanchezperez.forgerock.financial
+  rcsUI:
+    server: https://rcs-ui.jorgesanchezperez.forgerock.financial
+  rcs:
+    server: https://rcs.jorgesanchezperez.forgerock.financial
   rs:
     server: https://rs.jorgesanchezperez.forgerock.financial
+  swaggerUI:
+    server: https://swagger.jorgesanchezperez.forgerock.financial
+  swagger:
+    json: localhost
+
+cors:
+  originEnds: jorgesanchezperez.forgerock.financial

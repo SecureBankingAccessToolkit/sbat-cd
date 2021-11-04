@@ -47,7 +47,8 @@ externalCert:
   projectId: example-project
 
 use:
-  fidc: "false"
+  fidc:
+    platform: "false"
     initializer: "false"
 
 urls:
