@@ -17,6 +17,6 @@ spec:
     targetRevision: {{ .Values.ig.branch }}
     kustomize:
       images:
-        - 'ig=eu.gcr.io/sbat-gcr-develop/securebanking/gate/ig:{{ .Values.ig.tag }}'
+        - eu.gcr.io/sbat-gcr-develop/securebanking/gate/ig:{{ .Values.ig.tag }}
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
