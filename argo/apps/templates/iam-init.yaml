@@ -13,10 +13,6 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
   source:
-    helm:
-      parameters:
-        - name: RS_FQDN
-          value: rs.{{ .Values.ingress.domain }}
     path: _infra/helm/securebanking-openbanking-uk-fidc-initializer
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-fidc-initializer
     targetRevision: HEAD
