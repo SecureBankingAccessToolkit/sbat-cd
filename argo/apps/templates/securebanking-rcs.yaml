@@ -18,12 +18,6 @@ spec:
         value: {{ .Values.ingress.domain }}
       - name: deployment.imageOverride.tag
         value: {{ .Values.rcs.tag }}
-      - name: deployment.urls.ig.server
-        value: {{ .Values.urls.ig.server }}
-      - name: deployment.urls.authorization.server
-        value: {{ .Values.urls.authorization.server }}
-      - name: deployment.urls.rs.server
-        value: {{ .Values.urls.rs.server }}
       - name: deployment.cors.originEnds
         value: {{ .Values.cors.originEnds }}
     path: _infra/helm/securebanking-openbanking-uk-rcs
