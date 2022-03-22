@@ -24,12 +24,6 @@ spec:
         value: {{ .Values.ui.templateName }}
       - name: rcsUI.deployment.templateName
         value: {{ .Values.ui.templateName }}
-      - name: deployment.urls.authorization.server
-        value: {{ .Values.urls.authorization.server }}
-      - name: deployment.urls.rcs.server
-        value: {{ .Values.urls.rcs.server }}
-      - name: deployment.urls.ig.server
-        value: {{ .Values.urls.ig.server}}
     path: _infra/helm/securebanking-ui
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-ui
     targetRevision: {{ .Values.ui.branch }}
