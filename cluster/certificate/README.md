@@ -3,8 +3,8 @@ This helm chart has the purpose of bringing an SSL certificate from the google s
 
 ## Values
 
-| Value | description | default |
-| ----- | ----------- | ------- |
-| externalCert.defaultWildcard | enable the default wildcard certificate relevant for the `dev` domain | `true` |
-| externalCert.secretName | Name of the kubernetes secret to store the wildcard | `sslcert` |
-| externalCert.projectId | GCP project that stores the secrets | `example-project` |
+| Value                        | description                                                           | default           |
+|------------------------------|-----------------------------------------------------------------------|-------------------|
+| externalCert.defaultWildcard | enable the default wildcard certificate relevant for the `dev` domain | `true`            |
+| externalCert.secretName      | Name of the kubernetes secret to store the wildcard                   | `sslcert`         |
+| externalCert.projectId       | GCP project that stores the secrets                                   | `example-project` |
