@@ -1,7 +1,7 @@
 # This initializer pod will be deployed in the namespace with the environment type = 'CDM'
 # Otherwise, currently this pod will be deployed in cdk namespace only
 # @See the pipeline initialise, step 'install_initializer_cron_job'
-{{- if eq .Values.environment.type "CDM" }}
+{{- if eq .Values.environment.type "FIDC" }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
