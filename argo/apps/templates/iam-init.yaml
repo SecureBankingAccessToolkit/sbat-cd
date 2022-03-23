@@ -23,7 +23,6 @@ spec:
     path: _infra/helm/securebanking-openbanking-uk-fidc-initializer
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-fidc-initializer
     targetRevision: HEAD
-    env
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
 {{- end }}
