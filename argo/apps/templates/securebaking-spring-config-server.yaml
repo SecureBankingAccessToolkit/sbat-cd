@@ -8,6 +8,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
+    # Only permit applications to deploy to the destination namespace in the same cluster destinations
     namespace: {{ .Values.spec.destination.namespace }}
     server: {{ .Values.spec.destination.server }}
   project: {{ .Values.spec.project }}
