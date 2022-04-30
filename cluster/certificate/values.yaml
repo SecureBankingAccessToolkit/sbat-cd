@@ -3,5 +3,5 @@ defaultWildcardSecret: false
 serviceAccount: default
 
 externalCert:
-  projectId: example-project
+  projectId: joyce-dev
   secretName: sslcert

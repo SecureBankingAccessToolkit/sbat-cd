@@ -2,7 +2,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev-joyce
+    namespace: dev
   source:
     targetRevision: HEAD
 
