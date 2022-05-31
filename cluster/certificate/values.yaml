@@ -1,6 +1,7 @@
 defaultWildcardSecret: false
 
 serviceAccount: default
+namespace: default
 
 externalCert:
   projectId: example-project
