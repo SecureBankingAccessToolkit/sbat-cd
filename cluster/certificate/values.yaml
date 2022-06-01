@@ -5,3 +5,4 @@ serviceAccount: default
 externalCert:
   projectId: example-project
   secretName: sslcert
+  certPrefix: dev
