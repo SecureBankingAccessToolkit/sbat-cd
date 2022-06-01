@@ -3,8 +3,19 @@ This helm chart has the purpose of bringing an SSL certificate from the google s
 
 ## Values
 
-| Value                        | description                                                           | default           |
+| Value    | description                          | default           |
 |------------------------------|-----------------------------------------------------------------------|-------------------|
-| externalCert.defaultWildcard | enable the default wildcard certificate relevant for the `dev` domain | `true`            |
+| defaultWildcard | enable the default wildcard certificate relevant for the `dev` domain | `true`            |
 | externalCert.secretName      | Name of the kubernetes secret to store the wildcard                   | `sslcert`         |
 | externalCert.projectId       | GCP project that stores the secrets                                   | `example-project` |
+| externalCert.certPrefix      | The prefix of the cert to pull from google secrets manager when defaultWildcard is false. |dev|
+
+## Example
+
+The following will create the `bohocode-cdk` namespace, and use the cluster/certificate chart to deploy a secret to sslcert in `bohocode-cdk` namespace. It will deploy the the secrets called `bohocode-crt` and `bohocode-key` from google secret manager to tls.crt and tls.key in the `sslcert` secret. 
+
+```
+helm upgrade cdk cluster/certificate --install --namespace bohocode-cdk --create-namespace --set namespace=bohocode-cdk --set externalCert.projectId=sbat-dev --set defaultWildcardSecret=false --set externalCert.certPrefix=bohocode
+```
+
+
