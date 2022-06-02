@@ -1,7 +1,7 @@
 serviceAccount: default
 
 externalCert:
-  projectId: example-project
+  projectId: sbat-dev
   secretName: sslcert
   certPrefix: dev
-  defaultWildcardSecret: false
+

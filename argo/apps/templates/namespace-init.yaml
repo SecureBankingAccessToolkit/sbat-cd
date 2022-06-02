@@ -14,8 +14,6 @@ spec:
   source:
     helm:
       parameters:
-      - name: externalCert.defaultWildcardSecret
-        value: {{ .Values.externalCert.defaultWildcardSecret }}
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId }}
       - name: externalCert.certPrefix

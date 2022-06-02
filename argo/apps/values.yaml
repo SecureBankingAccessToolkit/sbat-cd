@@ -43,11 +43,11 @@ mongodb:
     enabled: false
 
 externalCert:
+
   projectId: example-project
   defaultWildcardSecret: false
   secretName: sslcert
   certPrefix: dev
-
 # environment.type: It can be:
 # CDK value: (Cloud Developer's Kit) development identity platform
 # CDM value: CDM (Cloud Deployment Model) identity cloud platform
