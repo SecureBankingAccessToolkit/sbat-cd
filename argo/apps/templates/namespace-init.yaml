@@ -14,8 +14,14 @@ spec:
   source:
     helm:
       parameters:
+      - name: externalCert.defaultWildcardSecret
+        value: {{ .Values.externalCert.defaultWildcardSecret }}
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId }}
+      - name: externalCert.certPrefix
+        value: {{ .Values.externalCert.certPrefix }}
+      - name: externalCert.secretName
+        value: {{ .Values.externalCert.secretName }}
     path: cluster/certificate
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}
