@@ -16,6 +16,8 @@ spec:
       parameters:
       - name: externalCert.projectId
         value: {{ .Values.externalCert.projectId }}
+      - name: externalCert.certPrefix
+        value: {{ .Values.externalCert.certPrefix }}
     path: cluster/certificate
     repoURL: https://github.com/SecureBankingAccessToolkit/sbat-cd
     targetRevision: {{ .Values.spec.source.targetRevision }}

@@ -1,11 +1,12 @@
 ## namespace-setup
 This helm chart has the purpose of bringing an SSL certificate from the google secrets manger. We use this to limit our dependency on cert-manager. Our namespaces are created and destroyed frequently and cert-manager has the tendency of requesting new prod letsencrypt certificates which regularly gives us a 429 throttle for cert requests.
 
+By default, the chart will use the dev-crt and dev-key secrets from secret manager, but this may be over-ridden usign the externalCert.certPrefix value (see below).
+
 ## Values
 
 | Value    | description                          | default           |
 |------------------------------|-----------------------------------------------------------------------|-------------------|
-| defaultWildcard | enable the default wildcard certificate relevant for the `dev` domain | `true`            |
 | externalCert.secretName      | Name of the kubernetes secret to store the wildcard                   | `sslcert`         |
 | externalCert.projectId       | GCP project that stores the secrets                                   | `example-project` |
 | externalCert.certPrefix      | The prefix of the cert to pull from google secrets manager when defaultWildcard is false. |dev|
