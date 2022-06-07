@@ -38,7 +38,7 @@ ig:
   tag: latest
   branch: HEAD
 
-test-init:
+testInit:
   cdmadminpassword: replace
 
 mongodb:
