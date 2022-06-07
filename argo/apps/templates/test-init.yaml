@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: test-init-{{ .Release.Name }}
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "4"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -16,8 +16,8 @@ spec:
       parameters:
       - name: environment.type
         value: {{ .Values.environment.type }}
-    path: _infra/helm/securebanking-openbanking-uk-fidc-initializer
-    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-fidc-initializer
+    path: _infra/helm/securebanking-test-data-initializer
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-test-data-initializer
     targetRevision: 294-remove-PSU-initializer
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
