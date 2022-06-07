@@ -15,7 +15,9 @@ spec:
     helm:
       parameters:
       - name: environment.type
-        value: {{ .Values.environment.type }}
+        value: {{ .Values.environment.type }}     
+      - name: environment.cdmadminpassword
+        value: {{ .Values.test-init.cdmadminpassword }}
     path: _infra/helm/securebanking-test-data-initializer
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-test-data-initializer
     targetRevision: HEAD

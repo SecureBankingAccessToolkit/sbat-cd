@@ -38,6 +38,9 @@ ig:
   tag: latest
   branch: HEAD
 
+test-init:
+  cdmadminpassword: replace
+
 mongodb:
   auth:
     enabled: false
