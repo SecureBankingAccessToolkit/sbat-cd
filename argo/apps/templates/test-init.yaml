@@ -16,7 +16,7 @@ spec:
       parameters:
       - name: environment.type
         value: {{ .Values.environment.type }}     
-      - name: environment.cdmadminpassword
+      - name: environment.frPlatformAdminPassword
         value: {{ .Values.testInit.cdmadminpassword }}
       - name: environment.namespace
         value: {{ .Values.externalCert.certPrefix }}
