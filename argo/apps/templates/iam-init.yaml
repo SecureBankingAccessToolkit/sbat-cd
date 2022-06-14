@@ -20,9 +20,9 @@ spec:
       parameters:
       - name: environment.type
         value: {{ .Values.environment.type }}
-    path: _infra/helm/securebanking-openbanking-uk-fidc-initializer
+    path: _infra/helm/securebanking-openbanking-uk-iam-initializer
     repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-fidc-initializer
-    targetRevision: HEAD
+    targetRevision: test_configmap
   syncPolicy:
     {{- toYaml .Values.spec.syncPolicy | nindent 4 }}
 {{- end }}

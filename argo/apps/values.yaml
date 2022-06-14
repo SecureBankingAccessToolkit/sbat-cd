@@ -36,7 +36,7 @@ ui:
 
 ig:
   tag: latest
-  branch: test_configmap
+  branch: HEAD
 
 testInit:
   cdmadminpassword: replace
