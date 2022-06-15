@@ -23,7 +23,7 @@ config:
 
 rcs:
   tag: latest
-  branch: HEAD
+  branch: update_ingress_pathtype
 
 rs:
   tag: latest
