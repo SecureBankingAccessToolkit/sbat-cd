@@ -27,7 +27,7 @@ rcs:
 
 rs:
   tag: latest
-  branch: fix_rs_error
+  branch: HEAD
 
 ui:
   tag: latest
