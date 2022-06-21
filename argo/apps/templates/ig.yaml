@@ -13,7 +13,7 @@ spec:
   project: default
   source:
     path: kustomize/overlay/7.0/obdemo-bank/{{ .Values.spec.destination.namespace }}
-    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-demo
+    repoURL: https://github.com/SecureBankingAccessToolkit/securebanking-openbanking-uk-gateway
     targetRevision: {{ .Values.ig.branch }}
     kustomize:
       images:
